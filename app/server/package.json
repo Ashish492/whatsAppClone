@@ -35,11 +35,14 @@
     "eslint-plugin-prettier": "^5.0.0",
     "eslint-plugin-promise": "^6.0.0",
     "nodemon": "^3.0.1",
+    "prisma": "5.7.0",
     "ts-node": "^10.9.1",
     "tsconfig-paths": "^4.2.0",
     "typescript": "^5.2.2"
   },
   "dependencies": {
+    "@prisma/client": "5.7.0",
+    "add": "^2.0.6",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
     "dotenv-safe": "^8.2.0",
@@ -47,12 +50,13 @@
     "helmet": "^7.0.0",
     "http-errors": "^2.0.0",
     "jsonwebtoken": "^9.0.2",
+    "mongoose": "^7.5.2",
     "morgan": "^1.10.0",
     "passport": "^0.6.0",
     "passport-jwt": "^4.0.1",
     "pino": "^8.15.0",
     "pino-pretty": "^10.2.0",
-    "zod": "^3.22.2",
-    "shared": "workspace:*"
+    "shared": "workspace:*",
+    "zod": "^3.22.2"
   }
 }

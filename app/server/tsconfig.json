@@ -111,7 +111,8 @@
       "@models/*": ["src/models/*"],
       "@services/*": ["src/services/*"],
       "@middlewares/*": ["src/middlewares/*"],
-      "@types/*": ["src/types/*"]
+      "@types/*": ["src/types/*"],
+      "@db": ["src/db/index.ts"]
     }
   },
   "include": ["./src/**/*.ts"],
