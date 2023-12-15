@@ -8,7 +8,7 @@ const Login: FC<Props> = _props => {
           <img src="/assets/whatsapp.gif" />
           <span className="text-7xl text-white self-center">Whatsapp</span>
         </div>
-        <button> login with google</button>
+        <button className="rounded"> login with google</button>
       </div>
     </>
   )
