@@ -1,3 +1,4 @@
+export { authUser } from "./authMiddleware";
 export { 
 	default as passportAuth,
 	initializePassport,

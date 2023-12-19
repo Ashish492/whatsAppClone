@@ -15,6 +15,13 @@ const start = async () => {
   }
 };
 start();
+process.on('beforeExit', async () => {
+  await new Connection().disConnect();
+});
+process.on('SIGINT', async () => {
+  await new Connection().disConnect();
+  process.exit();
+});
 // uncomment to use cluster
 // if (cluster.isPrimary) {
 //   for (let i = 0; i < os.cpus().length; i++) {

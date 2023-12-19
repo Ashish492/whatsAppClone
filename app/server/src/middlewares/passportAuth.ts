@@ -1,35 +1,57 @@
-import { JWTPayload } from '@models';
-import createHttpError from 'http-errors';
 import passport from 'passport';
-import { Strategy, StrategyOptions, ExtractJwt } from 'passport-jwt';
-import dotenv from 'dotenv-safe';
-dotenv.config();
-const options: StrategyOptions = {
-  jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
-  secretOrKey: process.env.JWT_SECRET,
-  algorithms: ['RS256'],
+import { Strategy, StrategyOptionsWithRequest } from 'passport-google-oauth20';
+import { User } from '@prisma/client';
+import { db } from '@db';
+const options: StrategyOptionsWithRequest = {
+  clientID: process.env.GOOGLE_CLIENT_ID!,
+  clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
+  callbackURL: '/auth/google/callback',
+  scope: ['profile', 'email'],
+  passReqToCallback: true,
 };
 passport.use(
-  new Strategy(options, async (payload: JWTPayload, done) => {
+  new Strategy(options, async (_req, _accessToken, _refreshToken, profile, done) => {
     try {
-      //   const session = await SessionModel.findOne({
-      //     _id: payload.session,
-      //     valid: true,
-      //   });
-      let user = true;
-      if (user) {
-        return done(null, payload);
-      }
-      throw new Error();
+      const defaultUser: Omit<User, 'id'> = {
+        email: profile.emails![0].value,
+        name: `${profile.name?.givenName} ${profile.name?.familyName}`,
+        googleId: profile.id,
+        profilePic: profile.photos![0].value,
+      };
+      const user = await db.user.upsert({
+        create: defaultUser,
+        update: defaultUser,
+        where: {
+          googleId: defaultUser.googleId,
+        },
+      });
+      done(null, user);
     } catch (error) {
-      return done(new createHttpError[401]('unauthorize'), false);
+      done(error as Error);
     }
   })
 );
+passport.serializeUser((user, done) => {
+  done(null, (user as User).id);
+});
+
+passport.deserializeUser((id, done) => {
+  console.log('called', id);
+  db.user
+    .findUnique({
+      where: {
+        id: id as number,
+      },
+    })
+    .then(user => done(null, user))
+    .catch(err => done(err));
+});
 export function initializePassport() {
   return passport.initialize();
 }
 export function auth() {
-  return passport.authenticate('jwt', { session: false });
+  return passport.authenticate('google', {
+    scope: ['profile', 'email'],
+  });
 }
 export default passport;

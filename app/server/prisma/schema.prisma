@@ -9,6 +9,15 @@ datasource db {
   directUrl = env("DIRECT_URL")
 }
 model User {
-  id    Int    @id @default(autoincrement())
-  email String @unique
+  id         Int     @id @default(autoincrement())
+  email      String  @unique
+  name       String
+  googleId   String  @unique
+  profilePic String?
+}
+model Session {
+  id        String   @id
+  sid       String   @unique
+  data      String
+  expiresAt DateTime
 }

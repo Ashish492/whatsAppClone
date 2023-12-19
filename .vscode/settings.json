@@ -1,5 +1,16 @@
 {
   "path-intellisense.mappings": {
     "/assets": "${workspaceFolder}/app/client/public/assets"
+  },
+  "eslint.workingDirectories": ["./app/server/", "./app/client/"],
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact"
+  ],
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "always"
   }
 }

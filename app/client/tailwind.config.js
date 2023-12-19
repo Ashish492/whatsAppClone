@@ -30,6 +30,9 @@ export default {
       gridTemplateColumns: {
         main: '1fr 2.4fr',
       },
+      fontFamily:{
+        "system-ui":"system-ui"
+      }
     },
   },
   plugins: [],

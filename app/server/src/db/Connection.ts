@@ -15,5 +15,10 @@ export class Connection {
     }
     return this.db;
   }
+  public async disConnect() {
+    if (Connection.db) {
+      await Connection.db.$disconnect();
+    }
+  }
 }
 export const db = Connection.getConnection();

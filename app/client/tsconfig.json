@@ -19,8 +19,14 @@
     "noFallthroughCasesInSwitch": true,
     "baseUrl": "./src",
     "paths": {
+      "@pages": ["pages/index.ts"],
       "@pages/*": ["pages/*"],
-      "@component/*": ["component/*"]
+      "@component": ["component/index.ts"],
+      "@component/*": ["component/*"],
+      "@utils": ["utils/index.ts"],
+      "@utils/*": ["utils/*"],
+      "@api": ["api/index.ts"],
+      "@api/*": ["api/*"]
     }
   },
   "include": ["src", "src/pages/Login.tsx"],

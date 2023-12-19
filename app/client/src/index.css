@@ -2,5 +2,5 @@
 @tailwind components;
 @tailwind utilities;
 * {
-  @apply box-border font-sans;
+  @apply box-border font-system-ui;
 }
