@@ -8,7 +8,7 @@ function App() {
       const {
         data: { user },
       } = await User.fetchLoginUser()
-      console.log(user)
+      alert(user)
       setIsLogin(true)
       alert('user login successfully')
     } catch (error) {

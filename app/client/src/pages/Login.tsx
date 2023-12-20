@@ -9,7 +9,7 @@ const Login: FC<Props> = _props => {
       const {
         data: { user },
       } = await User.fetchLoginUser()
-      console.log(user)
+      alert(user)
       alert('user login successfully')
     } catch (error) {
       alert('something error to login')
@@ -36,7 +36,7 @@ const Login: FC<Props> = _props => {
     <>
       <div className="flex bg-panel-header-background justify-center items-center min-h-screen min-w-full gap-7 flex-col">
         <div className="flex items-center justify-center  gap-4">
-          <img src="/assets/whatsapp.gif" height={300} width={300} />
+          <img src="/assets/whatsapp.gif" height={300} width={300} alt="logo" />
           <span className="text-7xl text-white ">Whatsapp</span>
         </div>
         <button

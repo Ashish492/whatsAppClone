@@ -1,9 +1,12 @@
 module.exports = {
+  root:true,
   env: {
     browser: true,
     es2021: true
   },
-  extends: ['standard-with-typescript', 'prettier'],
+  extends: ['airbnb-base', 'prettier'],
+  parser: '@typescript-eslint/parser',
+  plugins: ['@typescript-eslint', 'prettier'],
   overrides: [
     {
       env: {
@@ -19,10 +22,17 @@ module.exports = {
   ],
   parserOptions: {
     ecmaVersion: 'latest',
+    "project":"./tsconfig.json",
     sourceType: 'module'
   },
   rules: {
+    "import/prefer-default-export":"warn",
     "no-console":"error",
-    "@typescript-eslint/no-unsafe-argument":"off"
-  }
+    "import/extensions":"off"
+  },
+  settings: {
+    'import/resolver': {
+      typescript: {}, // this loads <rootdir>/tsconfig.json to eslint
+    },
+  },
 }

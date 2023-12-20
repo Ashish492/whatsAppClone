@@ -29,6 +29,6 @@
       "@api/*": ["api/*"]
     }
   },
-  "include": ["src", "src/pages/Login.tsx"],
+  "include": [".eslintrc.cjs", "./src/**/*.tsx", "./src/**/*.ts"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

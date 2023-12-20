@@ -1,4 +1,5 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
-#pn lint:fix
-#npm test
+#comment these paths if you pull this code
+export PATH="/home/jerry/.sdkman/candidates/java/current/bin:/home/jerry/.nvm/versions/node/v16.20.0/bin:/home/jerry/.local/share/pnpm:/home/jerry/.local/share/gnome-shell/extensions/ddterm@amezin.github.com/bin:/home/jerry/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin:/home/jerry/.local/bin:/home/jerry/.local/share/gem/ruby/3.1.0/bin:$PATH"
+pnpm run lint:fix

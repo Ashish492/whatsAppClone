@@ -1,16 +1,16 @@
 import passport from 'passport';
-import { Strategy, StrategyOptionsWithRequest } from 'passport-google-oauth20';
+import { Strategy, StrategyOptions } from 'passport-google-oauth20';
 import { User } from '@prisma/client';
 import { db } from '@db';
-const options: StrategyOptionsWithRequest = {
+
+const options: StrategyOptions = {
   clientID: process.env.GOOGLE_CLIENT_ID!,
   clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
   callbackURL: '/auth/google/callback',
   scope: ['profile', 'email'],
-  passReqToCallback: true,
 };
 passport.use(
-  new Strategy(options, async (_req, _accessToken, _refreshToken, profile, done) => {
+  new Strategy(options, async (_accessToken, _refreshToken, profile, done) => {
     try {
       const defaultUser: Omit<User, 'id'> = {
         email: profile.emails![0].value,
@@ -34,9 +34,7 @@ passport.use(
 passport.serializeUser((user, done) => {
   done(null, (user as User).id);
 });
-
 passport.deserializeUser((id, done) => {
-  console.log('called', id);
   db.user
     .findUnique({
       where: {
@@ -44,7 +42,7 @@ passport.deserializeUser((id, done) => {
       },
     })
     .then(user => done(null, user))
-    .catch(err => done(err));
+    .catch(err => done(err, null));
 });
 export function initializePassport() {
   return passport.initialize();

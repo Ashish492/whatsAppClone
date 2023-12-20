@@ -36,3 +36,4 @@ export const routeErrorHandler: ErrorRequestHandler = (err, req, res, _next) => 
     message: err.message ?? 'failed',
   });
 };
+console.log('hello');

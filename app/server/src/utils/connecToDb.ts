@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 mongoose.set('runValidators', true);
-export default function connectToDB() {
+export default async function connectToDB() {
   mongoose.set('toJSON', {
     virtuals: true,
     transform: (doc, converted) => {
@@ -9,5 +9,5 @@ export default function connectToDB() {
       converted.id = doc._id;
     },
   });
-  return mongoose.connect(process.env.DATABASE_URL!);
+  return await mongoose.connect(process.env.DATABASE_URL);
 }

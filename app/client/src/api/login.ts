@@ -1,4 +1,4 @@
-import { loginResponse } from 'model/login'
+import { LoginResponse } from 'model/login'
 import { axios } from 'utils'
 export const loginWithGoogle = () =>
-  axios.get<loginResponse>('/auth/login/google')
+  axios.get<LoginResponse>('/auth/login/google')

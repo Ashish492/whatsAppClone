@@ -1,35 +1,63 @@
 module.exports = {
   root: true,
-  env: { browser: true, es2020: true },
+  env: {
+    browser: true,
+    es2021: true,
+  },
   extends: [
-    'eslint:recommended',
-    'plugin:@typescript-eslint/recommended',
-    'plugin:react-hooks/recommended',
-    'plugin:import/recommended',
+    'airbnb-typescript',
+    'plugin:jsx-a11y/recommended',
+    'plugin:react/recommended',
     'plugin:import/typescript',
+    'plugin:@typescript-eslint/recommended',
+    'plugin:react/jsx-runtime',
+
     'prettier',
-    'plugin:jest/recommended', // Add this line to include Jest-related rules
   ],
-  ignorePatterns: ['dist', '.eslintrc.cjs'],
+  plugins: [
+    '@typescript-eslint',
+    'react',
+    'jsx-a11y',
+    'import',
+    '@typescript-eslint',
+    'prettier',
+  ],
+  overrides: [
+    {
+      env: {
+        node: true,
+      },
+      files: ['.eslintrc.{js,cjs}'],
+      parserOptions: {
+        sourceType: 'script',
+      },
+    },
+  ],
   parser: '@typescript-eslint/parser',
-  plugins: ['react-refresh'],
-  // Add a custom rule to require double quotes for strings
+  parserOptions: {
+    ecmaFeatures: {
+      jsx: true,
+    },
+    ecmaVersion: 'latest',
+    sourceType: 'module',
+    project: './tsconfig.json',
+  },
   rules: {
-    'react-refresh/only-export-components': [
-      'warn',
-      { allowConstantExport: true },
+    'no-console': 'error',
+    'prettier/prettier': 'error',
+    '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
+    '@typescript-eslint/ban-types': [
+      'error',
+      {
+        types: {
+          '{}': false, // Disable ban for empty object type
+        },
+      },
     ],
-    '@typescript-eslint/ban-types': 'off',
-    'no-unused-vars': 'off',
-    '@typescript-eslint/no-unused-vars': ['error', { varsIgnorePattern: '^_' }],
-    quotes: ['error', 'double'], // Add this line for the new rule
   },
   settings: {
-    'import/resolver': {
-      typescript: {
-        alwaysTryTypes: true,
-        project: './tsconfig.json',
-      },
+    react: {
+      version: 'detect',
     },
   },
 }
