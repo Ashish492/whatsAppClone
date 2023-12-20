@@ -1,2 +1,2 @@
-export type { Blog } from "./blog";
-export type { User, UserWithID } from "./user";
+// eslint-disable-next-line import/prefer-default-export
+export type { User } from './user'
