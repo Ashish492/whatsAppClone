@@ -1,8 +1,9 @@
 import { loginFailed, loginSuccess } from '@controllers';
 import { auth, authUser } from '@middlewares';
-import { controller } from '@utils';
+
 import { Router } from 'express';
 import passport from 'passport';
+
 const authRoute = Router();
 authRoute.get('/', (req, res) => res.send('hello'));
 authRoute.get('/login/google', auth());
@@ -14,6 +15,6 @@ authRoute.get(
     failureRedirect: '/auth/login/failure',
   })
 );
-authRoute.get('/login/success', authUser, controller(loginSuccess));
-authRoute.get('/login/failure', controller(loginFailed));
+authRoute.get('/login/success', authUser, loginSuccess);
+authRoute.get('/login/failure', loginFailed);
 export default authRoute;

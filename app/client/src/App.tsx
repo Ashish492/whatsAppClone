@@ -1,23 +1,30 @@
-import { User } from '@api/user'
+import {} from '@api/user'
+import { useAppDispatch, useAppSelector } from '@hook/useStore'
 import Login from '@pages/Login'
-import { useEffect, useState } from 'react'
+import {
+  authUserSelector,
+  checkLogin,
+  isLoginSelector,
+} from '@store/features/auth'
+import { useEffect } from 'react'
 function App() {
-  const [isLogin, setIsLogin] = useState(false)
-  const fetchAuthUser = async () => {
-    try {
-      const {
-        data: { user },
-      } = await User.fetchLoginUser()
-      alert(user)
-      setIsLogin(true)
-      alert('user login successfully')
-    } catch (error) {
-      alert('something error to login')
-    }
-  }
+  const dispatch = useAppDispatch()
+  const isLogin = useAppSelector(isLoginSelector)
+  const currentUser = useAppSelector(authUserSelector)
   useEffect(() => {
-    fetchAuthUser()
+    dispatch(checkLogin())
   }, [])
-  return <>{isLogin ? <p>thanks for login</p> : <Login />}</>
+  return (
+    <>
+      {isLogin ? (
+        <p>
+          hello {currentUser?.name}
+          <img src={currentUser?.profilePic} alt="userProfile" />
+        </p>
+      ) : (
+        <Login />
+      )}
+    </>
+  )
 }
 export default App

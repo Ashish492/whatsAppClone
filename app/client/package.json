@@ -11,15 +11,18 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@reduxjs/toolkit": "^2.0.1",
     "axios": "^1.6.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.12.0",
-    "vite-tsconfig-paths": "^4.2.0"
+    "react-redux": "^9.0.4",
+    "vite-tsconfig-paths": "^4.2.0",
+    "shared": "workspace:*"
   },
   "devDependencies": {
-    "@types/react": "^18.2.15",
-    "@types/react-dom": "^18.2.7",
+    "@types/react": "^18.2.45",
+    "@types/react-dom": "^18.2.18",
     "@typescript-eslint/eslint-plugin": "^6.15.0",
     "@typescript-eslint/parser": "^6.15.0",
     "@vitejs/plugin-react-swc": "^3.3.2",
@@ -33,7 +36,6 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "postcss": "^8.4.30",
     "prettier": "^3.0.2",
-    "shared": "workspace:*",
     "tailwindcss": "^3.3.3",
     "typescript": "^5.0.2",
     "vite": "^4.4.5"

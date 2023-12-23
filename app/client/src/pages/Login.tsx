@@ -1,20 +1,11 @@
 import {} from '@api'
-import { User } from '@api/user'
+import {} from '@api/user'
+import {} from '@utils/requestHandler'
 import { FC } from 'react'
 import { FcGoogle } from 'react-icons/fc'
 type Props = {}
 const Login: FC<Props> = _props => {
-  const fetchAuthUser = async () => {
-    try {
-      const {
-        data: { user },
-      } = await User.fetchLoginUser()
-      alert(user)
-      alert('user login successfully')
-    } catch (error) {
-      alert('something error to login')
-    }
-  }
+  const fetchAuthUser = async () => {}
   const handleLogin = async () => {
     let timer: number | null = null
     const googleLoginURL = `${import.meta.env.VITE_API_URL}/auth/login/google`

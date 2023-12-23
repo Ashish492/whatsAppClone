@@ -1,6 +1,5 @@
+import { User } from 'shared'
+
 export type LoginResponse = {
-  user: {
-    name: string
-    email: string
-  }
+  user: User
 }

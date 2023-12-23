@@ -1,2 +1,2 @@
 export { default as authRoute } from "./authRoute";
-export { userRouter } from "./userRoute";
+export { default as userRoute } from "./userRoute";

@@ -26,7 +26,12 @@
       "@utils": ["utils/index.ts"],
       "@utils/*": ["utils/*"],
       "@api": ["api/index.ts"],
-      "@api/*": ["api/*"]
+      "@api/*": ["api/*"],
+      "@store": ["store/index.ts"],
+      "@store/*": ["store/*"],
+      "@hook": ["hook/index.ts"],
+      "@hook/*": ["hook/*"],
+      "@features/*": ["store/features/*"]
     }
   },
   "include": [".eslintrc.cjs", "./src/**/*.tsx", "./src/**/*.ts"],

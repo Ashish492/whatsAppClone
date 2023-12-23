@@ -21,6 +21,8 @@ app.use(cors({ origin: 'http://localhost:5173', credentials: true }));
 app.use(
   session({
     secret: process.env.SESSION_SECRET!,
+    resave: false,
+    cookie: { maxAge: 7 * 24 * 60 * 60 * 1000 },
     store: new PrismaSessionStore(db, {
       checkPeriod: 2 * 60 * 1000,
       dbRecordIdFunction: undefined,

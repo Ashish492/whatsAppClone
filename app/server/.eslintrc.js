@@ -1,8 +1,8 @@
 module.exports = {
-  root:true,
+  root: true,
   env: {
     browser: true,
-    es2021: true
+    es2021: true,
   },
   extends: ['airbnb-base', 'prettier'],
   parser: '@typescript-eslint/parser',
@@ -10,29 +10,29 @@ module.exports = {
   overrides: [
     {
       env: {
-        node: true
+        node: true,
       },
-      files: [
-        '.eslintrc.{js,cjs}'
-      ],
+      files: ['.eslintrc.{js,cjs}'],
       parserOptions: {
-        sourceType: 'script'
-      }
-    }
+        sourceType: 'script',
+      },
+    },
   ],
   parserOptions: {
     ecmaVersion: 'latest',
-    "project":"./tsconfig.json",
-    sourceType: 'module'
+    project: './tsconfig.json',
+    sourceType: 'module',
   },
   rules: {
-    "import/prefer-default-export":"warn",
-    "no-console":"error",
-    "import/extensions":"off"
+    'import/prefer-default-export': 'warn',
+    'no-console': 'error',
+    'import/extensions': 'off',
+    'func-names': 'off',
+    'no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
   },
   settings: {
     'import/resolver': {
       typescript: {}, // this loads <rootdir>/tsconfig.json to eslint
     },
   },
-}
+};

@@ -1,9 +1,10 @@
 import http from 'http';
-import app from './app';
 import { logger } from '@utils';
 import { Connection } from '@db';
+import app from './app';
+
 const start = async () => {
-  const PORT = process.env.PORT;
+  const { PORT } = process.env;
   try {
     const server = http.createServer(app);
     await Connection.getConnection();
@@ -16,10 +17,10 @@ const start = async () => {
 };
 start();
 process.on('beforeExit', async () => {
-  await new Connection().disConnect();
+  await Connection.disConnect();
 });
 process.on('SIGINT', async () => {
-  await new Connection().disConnect();
+  await Connection.disConnect();
   process.exit();
 });
 // uncomment to use cluster

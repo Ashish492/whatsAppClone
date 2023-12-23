@@ -11,7 +11,6 @@ module.exports = {
     'plugin:import/typescript',
     'plugin:@typescript-eslint/recommended',
     'plugin:react/jsx-runtime',
-
     'prettier',
   ],
   plugins: [
@@ -45,6 +44,7 @@ module.exports = {
   rules: {
     'no-console': 'error',
     'prettier/prettier': 'error',
+    'import/extension': 'off',
     '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
     '@typescript-eslint/ban-types': [
       'error',
