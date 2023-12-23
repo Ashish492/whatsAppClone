@@ -1,6 +1,5 @@
-import { loginFailed, loginSuccess } from '@controllers';
-import { auth, authUser } from '@middlewares';
-
+import { AuthController } from '@controllers';
+import { AuthMiddleware, auth } from '@middlewares';
 import { Router } from 'express';
 import passport from 'passport';
 
@@ -15,6 +14,6 @@ authRoute.get(
     failureRedirect: '/auth/login/failure',
   })
 );
-authRoute.get('/login/success', authUser, loginSuccess);
-authRoute.get('/login/failure', loginFailed);
+authRoute.get('/login/success', AuthMiddleware.authUser, AuthController.loginSuccess);
+authRoute.get('/login/failure', AuthController.loginFailed);
 export default authRoute;

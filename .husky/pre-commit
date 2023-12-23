@@ -1,5 +1,4 @@
 #!/usr/bin/zsh
-echo "$(pwd)hi";
 . "$(pwd)/$(dirname -- "$0")/_/husky.sh"
 #comment these paths if you pull this code
-pmpm run lint && pnpm run lint:fix
+ pnpm run lint:fix

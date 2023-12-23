@@ -11,7 +11,7 @@ export const validate = (schema: AnyZodObject) => async (req: Request, res: Resp
     next();
   } catch (e: any) {
     if (e instanceof ZodError) {
-      return res.status(500).json(e.errors);
+      next(e);
     }
   }
 };
