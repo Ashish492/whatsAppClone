@@ -1,11 +1,10 @@
-import {} from '@api'
-import {} from '@api/user'
+import {} from 'service'
+import {} from '@services/UserService'
 import {} from '@utils/requestHandler'
 import { FC } from 'react'
 import { FcGoogle } from 'react-icons/fc'
 type Props = {}
 const Login: FC<Props> = _props => {
-  const fetchAuthUser = async () => {}
   const handleLogin = async () => {
     let timer: number | null = null
     const googleLoginURL = `${import.meta.env.VITE_API_URL}/auth/login/google`
@@ -17,7 +16,6 @@ const Login: FC<Props> = _props => {
     if (newWindow) {
       timer = setInterval(() => {
         if (newWindow.closed) {
-          fetchAuthUser()
           if (timer) clearInterval(timer)
         }
       }, 500)

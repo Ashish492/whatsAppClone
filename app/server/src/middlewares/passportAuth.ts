@@ -12,15 +12,15 @@ const options: StrategyOptions = {
 passport.use(
   new Strategy(options, async (_accessToken, _refreshToken, profile, done) => {
     try {
-      const defaultUser: Omit<User, 'id'> = {
+      const defaultUser: Omit<User, 'id' | 'isNewUser'> = {
         email: profile.emails![0].value,
         name: `${profile.name?.givenName} ${profile.name?.familyName}`,
         googleId: profile.id,
         profilePic: profile.photos![0].value,
       };
       const user = await db.user.upsert({
-        create: defaultUser,
-        update: defaultUser,
+        create: { ...defaultUser, isNewUser: true },
+        update: { ...defaultUser, isNewUser: false },
         where: {
           googleId: defaultUser.googleId,
         },

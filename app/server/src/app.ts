@@ -7,8 +7,8 @@ import dotenv from 'dotenv-safe';
 import passport from 'passport';
 import session from 'express-session';
 import { PrismaSessionStore } from '@quixo3/prisma-session-store';
+import { db } from '@db';
 import routes from './route';
-import { db } from './db/Connection';
 
 const app: Application = express();
 dotenv.config();
@@ -20,6 +20,7 @@ app.use(helmet());
 app.use(cors({ origin: 'http://localhost:5173', credentials: true }));
 app.use(
   session({
+    saveUninitialized: false,
     secret: process.env.SESSION_SECRET!,
     resave: false,
     cookie: { maxAge: 7 * 24 * 60 * 60 * 1000 },

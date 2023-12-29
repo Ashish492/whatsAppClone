@@ -1,1 +1,0 @@
-export { loginWithGoogle } from './login'

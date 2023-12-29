@@ -1,4 +1,4 @@
-import {} from '@api/user'
+import {} from '@services/UserService'
 import { useAppDispatch, useAppSelector } from '@hook/useStore'
 import Login from '@pages/Login'
 import {
@@ -7,6 +7,7 @@ import {
   isLoginSelector,
 } from '@store/features/auth'
 import { useEffect } from 'react'
+import OnBoard from '@pages/OnBoard'
 function App() {
   const dispatch = useAppDispatch()
   const isLogin = useAppSelector(isLoginSelector)
@@ -14,6 +15,9 @@ function App() {
   useEffect(() => {
     dispatch(checkLogin())
   }, [])
+  if (currentUser?.isNewUser) {
+    return <OnBoard />
+  }
   return (
     <>
       {isLogin ? (

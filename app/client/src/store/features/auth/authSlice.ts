@@ -1,17 +1,18 @@
-import { User } from '@api/user'
 import { PayloadAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import { User as UserI } from 'shared'
+import { UserService } from '@services'
+import { User } from 'shared'
+
 export type Auth = {
   isLogin: boolean
-  user?: UserI
+  user?: User
 }
 const initialState: Auth = {
   isLogin: false,
 }
-export const checkLogin = createAsyncThunk<UserI, void>(
+export const checkLogin = createAsyncThunk<User, void>(
   'auth/checkLogin',
   async () => {
-    const response = await User.fetchLoginUser({})
+    const response = await UserService.fetchLoginUser({})
     if (response.code === 'error') {
       throw response.error
     } else {
